@@ -16,6 +16,16 @@ const HeaderComponent = () => {
                         <li className="nav-item fs-5">
                         {/* {isAuthenticated && <Link className="nav-link" to="/quiz">Todos</Link>}</li> */}
                         <Link className="nav-link" to="/question">Go to Quiz</Link></li>
+                        <li className="nav-item fs-5">
+                            {/* {isAuthenticated && <Link className="nav-link" to="/welcome">Home</Link>}</li> */}
+                            <Link className="nav-link" to="/quizCRUD">Manage Quiz</Link></li>
+                            {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">fdhfdhgde
+                                
+          <a className="dropdown-item" href="#">Action</a>
+          <a className="dropdown-item" href="#">Another action</a>
+          <div className="dropdown-divider"></div>
+          <a className="dropdown-item" href="#">Something else here</a>
+        </div> */}
                     </ul>
                 </div>
                 <ul className="navbar-nav">

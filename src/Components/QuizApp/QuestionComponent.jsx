@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import './QuestionComponent.css'
-import { retreiveAllQuiz } from '../QuizApi/QuizApi'
+import { deleteQuestionById, retreiveAllQuiz } from '../QuizApi/QuizApi'
 
 const QuestionComponent = () => {
+
+    const navigate=useNavigate()
+
+    const {id}=useParams();
 
     // const questions = [
     //     { id: 1, description: 'Who created Java Programming language', option1: 'Denis Ritchie', option2: 'James Gosling', option3: 'MSD', option4: 'Guido Van Rossum' },
@@ -21,6 +26,20 @@ const QuestionComponent = () => {
             console.log(response)
         })
         .catch(error=>console.log(error))
+    }
+
+    function updateQuestion(id){
+        navigate(`/question/getQuestion/${id}`)
+    }
+    function addNewQuestion(){
+        navigate(`/question/getQuestion/-1`)
+    }
+
+    function deleteQuestion(id){
+        deleteQuestionById(id)
+        .then(()=>{
+            refreshQuestion()
+        }).catch(error=>console.log(error))
     }
     return (
         <div className='container'>
@@ -53,10 +72,13 @@ const QuestionComponent = () => {
                                     </div>
                                     <div class="d-flex align-items-center pt-3">
                                         <div id="prev">
-                                            <button class="btn btn-primary">Previous</button>
+                                            <button class="btn btn-primary" onClick={()=>deleteQuestion(question.id)}>Delete</button>
                                         </div>
                                         <div class="ml-auto mr-sm-5">
-                                            <button class="btn btn-success">Next</button>
+                                            <button class="btn btn-success" onClick={addNewQuestion}>Add Question</button>
+                                        </div>
+                                        <div class="ml-auto mr-sm-5">
+                                        <button className='btn btn-warning' onClick={()=>updateQuestion(question.id)}>Update Question</button>
                                         </div>
                                     </div>
                                 </div>
